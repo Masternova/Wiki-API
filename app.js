@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
+// Request targeting all Articles
 app
   .route("/articles")
   .get((req, res) => {
@@ -48,6 +49,23 @@ app
         console.log(err);
       }
     });
+  });
+
+// Requests targeting specific Articles
+app
+  .route("/articles/:articleTitle")
+
+  .get((req, res) => {
+    const foundTitle = Article.findOne(
+      { title: req.params.articleTitle },
+      (err, foundArticle) => {
+        if (foundArticle) {
+          res.send(foundArticle);
+        } else {
+          res.send("No matching article found");
+        }
+      }
+    );
   });
 
 app.listen(PORT, () => {

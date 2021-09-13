@@ -16,7 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-// TODO
+app.get("/articles", (req, res) => {
+  Article.find((err, foundArticles) => {
+    res.send(foundArticles);
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);

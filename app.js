@@ -99,6 +99,15 @@ app
         }
       }
     );
+  })
+  .delete((req, res) => {
+    Article.deleteOne({ title: req.params.articleTitle }, (err) => {
+      if (!err) {
+        res.send("Deleted article");
+      } else {
+        res.send(err);
+      }
+    });
   });
 
 app.listen(PORT, () => {

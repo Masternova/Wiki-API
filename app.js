@@ -66,6 +66,39 @@ app
         }
       }
     );
+  })
+  .put((req, res) => {
+    Article.replaceOne(
+      {
+        title: req.params.articleTitle,
+      },
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      (err) => {
+        if (!err) {
+          res.send("Successfully update articles");
+        } else {
+          res.send(err);
+        }
+      }
+    );
+  })
+  .patch((req, res) => {
+    Article.updateOne(
+      {
+        title: req.params.articleTitle,
+      },
+      { $set: req.body },
+      (err) => {
+        if (!err) {
+          res.send("Successfully upated article");
+        } else {
+          console.log(err);
+        }
+      }
+    );
   });
 
 app.listen(PORT, () => {

@@ -2,9 +2,10 @@ const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const Article = require("./models/articlesSchema");
+dotenv = require("dotenv");
 
 const PORT = 3000;
-const dbUrl = "mongodb://localhost/wikiDB";
+const dbUrl = "mongodb://rollstart:314159@192.168.1.145:27017";
 
 const app = express();
 
